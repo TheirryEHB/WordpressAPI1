@@ -39,6 +39,7 @@ public class Observer1 implements Observer{
 
         for (User u : newUsers)
             System.out.println(u.getName());
+        newUsers.clear();
     }
 
 }

@@ -8,6 +8,7 @@ public class Users implements Runnable{
 
     private long existingUsers = 0;
     private final Wordpress client;
+    private final ArrayList<User> newUsers = new ArrayList<>();
 
     public Users(Wordpress client){
         this.client = client;
@@ -21,7 +22,7 @@ public class Users implements Runnable{
      */
     public List<User> getUsers(){ return this.client.getUsers(); }
 
-    ArrayList<User> newUsers = new ArrayList<>();
+
     /**
      * Get a list of all the new users since last time checked.
      *
@@ -35,11 +36,22 @@ public class Users implements Runnable{
      */
     public void getNewUsers(List<User> userList){
 
+        System.out.println("exi: "+existingUsers );
+        System.out.println("uses: " + userList.size());
         if ((long) userList.size() > existingUsers){
-            for (int i = (int) existingUsers; i < userList.size(); i++)
+            newUsers.clear();
+
+            int existIndex = 0;
+            if (existingUsers > 0)
+                existIndex = (int)existingUsers;
+
+            System.out.println("index: "+existIndex);
+            for (int i = (int)existingUsers; i < userList.size(); i++)
                 newUsers.add(userList.get(i));
 
-            existingUsers = newUsers.size();
+            System.out.println("new: " + newUsers.size());
+            existingUsers += newUsers.size();
+
             notifyObservers();
         }
     }
