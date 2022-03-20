@@ -36,24 +36,20 @@ public class Users implements Runnable{
      */
     public void getNewUsers(List<User> userList){
 
-        System.out.println("exi: "+existingUsers );
-        System.out.println("uses: " + userList.size());
-        if ((long) userList.size() > existingUsers){
+        /*if ((long) userList.size() > existingUsers){
             newUsers.clear();
 
             int existIndex = 0;
             if (existingUsers > 0)
                 existIndex = (int)existingUsers;
 
-            System.out.println("index: "+existIndex);
             for (int i = (int)existingUsers; i < userList.size(); i++)
                 newUsers.add(userList.get(i));
 
-            System.out.println("new: " + newUsers.size());
             existingUsers += newUsers.size();
 
             notifyObservers();
-        }
+        }*/
     }
 
     private ArrayList<Observer> observers = new ArrayList();

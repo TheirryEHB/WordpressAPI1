@@ -4,9 +4,12 @@ import com.afrozaar.wordpress.wpapi.v2.config.ClientConfig;
 import com.afrozaar.wordpress.wpapi.v2.config.ClientFactory;
 import com.afrozaar.wordpress.wpapi.v2.model.User;
 
-//RabbitMQ stuff
+//JDBC
+import java.sql.Connection;
+
+//RabbitMQ
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.Connection;
+//import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
 import java.io.IOException;
@@ -20,6 +23,9 @@ public class Main {
 
         Wordpress client = getWordpressClient();
 
+        Connection jdbcClient = JdbcConnector.makeConnection();
+
+
         /*ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");*/
 
@@ -31,7 +37,7 @@ public class Main {
             e.printStackTrace();
         }*/
 
-        Observer1 ob1 = new Observer1(client);
+        Observer1 ob1 = new Observer1(client, jdbcClient);
 
 
     }
@@ -52,6 +58,7 @@ public class Main {
 
         return ClientFactory.fromConfig(ClientConfig.of(baseUrl, username, password, false, debug));
     }
+
 
 /*
  *  Volledige url voor json gebruikers

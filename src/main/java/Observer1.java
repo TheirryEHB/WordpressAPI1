@@ -3,6 +3,7 @@ import com.afrozaar.wordpress.wpapi.v2.config.ClientConfig;
 import com.afrozaar.wordpress.wpapi.v2.config.ClientFactory;
 import com.afrozaar.wordpress.wpapi.v2.model.User;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -10,9 +11,13 @@ import java.util.concurrent.TimeUnit;
 public class Observer1 implements Observer{
 
     private ArrayList<User> newUsers = new ArrayList<>();
-    Runnable users;
+    private Runnable users;
+    private Connection jdbcClient;
 
-    public Observer1(Wordpress client){
+    public Observer1(Wordpress client, Connection connection){
+
+        //JDBC
+        jdbcClient = connection;
 
         // Creating a ScheduledThreadPoolExecutor object
         ScheduledThreadPoolExecutor threadPool
