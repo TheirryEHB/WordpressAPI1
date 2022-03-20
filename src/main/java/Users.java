@@ -36,25 +36,21 @@ public class Users implements Runnable{
     public void getNewUsers(List<User> userList){
 
         if ((long) userList.size() > existingUsers){
-
-            if ((int) existingUsers == 0)
-                existingUsers = 1;
-            for (int i = (int) existingUsers - 1; i < userList.size(); i++)
+            for (int i = (int) existingUsers; i < userList.size(); i++)
                 newUsers.add(userList.get(i));
-            existingUsers += newUsers.size();
 
-            notifyObservers(true);
+            existingUsers = newUsers.size();
+            notifyObservers();
         }
-        notifyObservers(false);
     }
 
     private ArrayList<Observer> observers = new ArrayList();
-    public void setObserser(Observer ob){
+    public void setObserver(Observer ob){
         observers.add(ob);
     }
-    private void notifyObservers(boolean b){
+    private void notifyObservers(){
         for(Observer ob : observers)
-            ob.getNotice(b);
+            ob.getNotice();
     }
     public ArrayList<User> getList(){
         return newUsers;

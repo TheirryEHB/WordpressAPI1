@@ -19,31 +19,26 @@ public class Observer1 implements Observer{
                 = new ScheduledThreadPoolExecutor(2);
 
         users = new Users(client);
-        ((Users) users).setObserser(this);
-        threadPool.scheduleAtFixedRate(users, 0, 8, TimeUnit.SECONDS);
+        ((Users) users).setObserver(this);
+        threadPool.scheduleAtFixedRate(users, 0, 5, TimeUnit.SECONDS);
 
         // Wait for 30 seconds
-        try {
+        /*try {
             Thread.sleep(30000);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        threadPool.shutdown();
+        threadPool.shutdown();*/
     }
 
     @Override
-    public void getNotice(boolean b) {
-        if (b)
-            pull();
-    }
-
-    @Override
-    public void pull() {
+    public void getNotice() {
         for ( User u : ((Users) users).getList())
             newUsers.add(u);
 
         for (User u : newUsers)
             System.out.println(u.getName());
     }
+
 }
