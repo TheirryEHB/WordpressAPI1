@@ -15,7 +15,7 @@
       <configuration />
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_16">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -48,6 +48,7 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.6.5" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.6.5" level="project" />
     <orderEntry type="library" name="Maven: com.rabbitmq:amqp-client:5.14.2" level="project" />
-    <orderEntry type="library" name="Maven: com.oracle.database.jdbc:ojdbc10:19.14.0.0" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.28" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
   </component>
 </module>
