@@ -15,11 +15,6 @@ public class JdbcConnector {
 
     @SneakyThrows
     public void init() {
-
-       /* Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.
-                getConnection("jdbc:mysql://10.3.56.3:5002/frontend"
-                        ,"frontend","hH6QbNdqeVxKTM23uW3EvrS7RgdP7CLZ");*/
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://10.3.56.3:5002/frontend");
         config.setUsername("frontend");
