@@ -2,18 +2,12 @@
 import com.afrozaar.wordpress.wpapi.v2.Wordpress;
 import com.afrozaar.wordpress.wpapi.v2.config.ClientConfig;
 import com.afrozaar.wordpress.wpapi.v2.config.ClientFactory;
-import com.afrozaar.wordpress.wpapi.v2.model.User;
 
 //JDBC
-import java.sql.Connection;
 
 //RabbitMQ
-import com.rabbitmq.client.ConnectionFactory;
 //import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.Channel;
 
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 public class Main {
 
@@ -24,7 +18,7 @@ public class Main {
         Wordpress client = getWordpressClient();
 
 
-        JdbcConnector.init();
+        DataManager.init();
 
 
         /*ConnectionFactory factory = new ConnectionFactory();

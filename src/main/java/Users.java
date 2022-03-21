@@ -3,10 +3,6 @@ import com.afrozaar.wordpress.wpapi.v2.model.User;
 import lombok.SneakyThrows;
 import lombok.val;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +28,7 @@ public class Users implements Runnable{
     @SneakyThrows
     private void getExistingUsers() {
 
-        val stmt = JdbcConnector.getHickari().getConnection().createStatement();
+        val stmt = DataManager.getHickari().getConnection().createStatement();
         val st = "SELECT * FROM RegisteredUser";
         val rs = stmt.executeQuery(st);
 

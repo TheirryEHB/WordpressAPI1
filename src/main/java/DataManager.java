@@ -8,7 +8,7 @@ import lombok.val;
 
 @UtilityClass
 @Log
-public class JdbcConnector {
+public class DataManager {
 
     @Getter
     private HikariDataSource hickari;
