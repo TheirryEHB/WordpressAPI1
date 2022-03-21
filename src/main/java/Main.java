@@ -23,7 +23,8 @@ public class Main {
 
         Wordpress client = getWordpressClient();
 
-        Connection jdbcClient = JdbcConnector.makeConnection();
+
+        JdbcConnector.init();
 
 
         /*ConnectionFactory factory = new ConnectionFactory();
@@ -37,7 +38,7 @@ public class Main {
             e.printStackTrace();
         }*/
 
-        Observer1 ob1 = new Observer1(client, jdbcClient);
+        Observer1 ob1 = new Observer1(client);
 
 
     }

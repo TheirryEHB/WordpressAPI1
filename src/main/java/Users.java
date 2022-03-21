@@ -1,6 +1,12 @@
 import com.afrozaar.wordpress.wpapi.v2.Wordpress;
 import com.afrozaar.wordpress.wpapi.v2.model.User;
+import lombok.SneakyThrows;
+import lombok.val;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +15,7 @@ public class Users implements Runnable{
     private long existingUsers = 0;
     private final Wordpress client;
     private final ArrayList<User> newUsers = new ArrayList<>();
+    private ArrayList<User> toRegisterUsers = new ArrayList<>();
 
     public Users(Wordpress client){
         this.client = client;
@@ -22,6 +29,21 @@ public class Users implements Runnable{
      */
     public List<User> getUsers(){ return this.client.getUsers(); }
 
+    @SneakyThrows
+    private void getExistingUsers() {
+
+        val stmt = JdbcConnector.getHickari().getConnection().createStatement();
+        val st = "SELECT * FROM RegisteredUser";
+        val rs = stmt.executeQuery(st);
+
+//        List<User> usersInWordp
+
+        while (rs.next()){
+            existingUsers ++;
+
+        }
+
+    }
 
     /**
      * Get a list of all the new users since last time checked.

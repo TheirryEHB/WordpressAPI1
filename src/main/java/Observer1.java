@@ -14,10 +14,9 @@ public class Observer1 implements Observer{
     private Runnable users;
     private Connection jdbcClient;
 
-    public Observer1(Wordpress client, Connection connection){
+    public Observer1(Wordpress client){
 
-        //JDBC
-        jdbcClient = connection;
+
 
         // Creating a ScheduledThreadPoolExecutor object
         ScheduledThreadPoolExecutor threadPool

@@ -1,31 +1,41 @@
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import lombok.Getter;
+import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
+import lombok.extern.java.Log;
+import lombok.val;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+@UtilityClass
+@Log
 public class JdbcConnector {
 
-    public static Connection makeConnection(){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.
-                    getConnection("jdbc:mysql://10.3.56.3:5002/frontend"
-                            ,"frontend","hH6QbNdqeVxKTM23uW3EvrS7RgdP7CLZ");
-            Statement stmt = con.createStatement();
-            createTables(stmt);
-            System.out.println("Created DB Connection....");
-            return con;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+    @Getter
+    private HikariDataSource hickari;
+
+    @SneakyThrows
+    public void init() {
+
+       /* Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.
+                getConnection("jdbc:mysql://10.3.56.3:5002/frontend"
+                        ,"frontend","hH6QbNdqeVxKTM23uW3EvrS7RgdP7CLZ");*/
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl("jdbc:mysql://10.3.56.3:5002/frontend");
+        config.setUsername("frontend");
+        config.setPassword("hH6QbNdqeVxKTM23uW3EvrS7RgdP7CLZ");
+
+        hickari = new HikariDataSource(config);
+
+        createTables();
+        log.info("Created DB Connection....");
+
     }
 
-    private static void createTables(Statement stmt) throws SQLException{
-        String sqlCreate = "CREATE TABLE IF NOT EXISTS RegisteredUser "
+    @SneakyThrows
+    private static void createTables() {
+        val stmt = hickari.getConnection().createStatement();
+        val sqlCreate = "CREATE TABLE IF NOT EXISTS RegisteredUser "
                 + "(id INTEGER not NULL, " +
                 " username Varchar(225), "
                 + " email Varchar(225))";
