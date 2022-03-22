@@ -74,6 +74,22 @@
             <version>4.0.3</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.requery/requery -->
+        <dependency>
+            <groupId>io.requery</groupId>
+            <artifactId>requery</artifactId>
+            <version>1.6.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.requery/requery-processor -->
+        <dependency>
+            <groupId>io.requery</groupId>
+            <artifactId>requery-processor</artifactId>
+            <version>1.6.0</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
     
 </project>
